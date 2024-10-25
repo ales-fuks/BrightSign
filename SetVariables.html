@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,154 +40,227 @@
             font-weight: bold;
             margin-bottom: 20px;
         }
+
+        /* Style when fields are read-only */
+        .table-input.read-only {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <div id="current-date"></div>
-<form id="userForm" action="/SetValues" method="POST">
-    <div class="table-container">
-        <!-- Header Row -->
-        <div class="table-header">
-            <div class="table-cell">Čas</div>
-            <div class="table-cell">Jméno příjmení</div>
-            <div class="table-cell">Datum narození</div>
-            <div class="table-cell">Skupina</div>
-            <div class="table-cell">Hrob</div>
-            <div class="table-cell">Místo</div>
-        </div>
-        
-        <!-- Data Rows -->
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="1.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="1.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="1.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="1.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="1.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="1.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="2.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="2.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="2.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="2.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="2.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="2.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="3.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="3.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="3.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="3.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="3.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="3.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="4.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="4.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="4.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="4.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="4.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="4.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="5.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="5.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="5.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="5.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="5.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="5.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="6.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="6.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="6.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="6.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="6.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="6.místo" class="table-input"></div>
-        </div>
-        <div class="table-row">
-            <div class="table-cell"><input type="text" name="7.čas" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="7.Jméno Příjmení" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="7.datum narození" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="7.skupina" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="7.hrob" class="table-input"></div>
-            <div class="table-cell"><input type="text" name="7.místo" class="table-input"></div>
-        </div>
-        <input type="hidden" id="hiddenDate" name="dnesje">
-    </div>
+    <form id="userForm" action="/SetValues" method="POST">
+        <div class="table-container">
+            <!-- Header Row -->
+            <div class="table-header">
+                <div class="table-cell">Čas</div>
+                <div class="table-cell">Jméno příjmení</div>
+                <div class="table-cell">Datum narození</div>
+                <div class="table-cell">Skupina</div>
+                <div class="table-cell">Hrob</div>
+                <div class="table-cell">Místo</div>
+            </div>
 
-    <div style="margin-top: 20px;">
-        <button type="submit">Odeslat</button>
-        <button type="button" onclick="clearForm()">Smazat!</button>
-    </div>
-</form>
+            <!-- Data Rows -->
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="1.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="1.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="1.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="1.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="1.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="1.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="2.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="2.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="2.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="2.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="2.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="2.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="3.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="3.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="3.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="3.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="3.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="3.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="4.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="4.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="4.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="4.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="4.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="4.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="5.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="5.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="5.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="5.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="5.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="5.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="6.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="6.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="6.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="6.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="6.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="6.místo" class="table-input"></div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell"><input type="text" name="7.čas" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="7.Jméno Příjmení" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="7.datum narození" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="7.skupina" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="7.hrob" class="table-input"></div>
+                <div class="table-cell"><input type="text" name="7.místo" class="table-input"></div>
+            </div>
+            <input type="hidden" id="hiddenDate" name="dnesje">
+        </div>
 
-<script>
-    // Function to load data from the XML and populate the form inputs
-    function loadUserData() {
-        // Fetch the XML data (in a real scenario, this URL should be changed to the actual endpoint)
-        fetch('GetUserVars')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(data, 'text/xml');
-                const vars = xmlDoc.getElementsByTagName('BrightSignVar');
-                
-                for (let i = 0; i < vars.length; i++) {
-                    const varName = vars[i].getAttribute('name');
-                    const varValue = vars[i].textContent;
-                    const input = document.querySelector(`input[name="${varName}"]`);
-                    if (input) {
-                        input.value = varValue;
+        <div style="margin-top: 20px;">
+            <button type="submit" id="submitButton">Odeslat</button>
+            <button type="button" id="cancelButton" onclick="clearForm()">Smazat!</button>
+            <button type="button" id="scheduleButton" onclick="toggleScheduledSubmission()">Odeslat zítra</button>
+            <span id="countdown" style="font-weight: bold; color: red; margin-left: 10px;"></span>
+        </div>
+    </form>
+
+    <script>
+        let scheduledSubmissionTimeout = null;
+        let countdownInterval = null;
+        const submitButton = document.getElementById('submitButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const scheduleButton = document.getElementById('scheduleButton');
+        const countdownSpan = document.getElementById('countdown');
+
+        // Load the current date and populate form fields on page load
+        function loadUserData() {
+            fetch('GetUserVars')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(data, 'text/xml');
+                    const vars = xmlDoc.getElementsByTagName('BrightSignVar');
+
+                    for (let i = 0; i < vars.length; i++) {
+                        const varName = vars[i].getAttribute('name');
+                        const varValue = vars[i].textContent;
+                        const input = document.querySelector(`input[name="${varName}"]`);
+                        if (input) {
+                            input.value = varValue;
+                        }
                     }
+                    const today = new Date();
+                    const formattedDate = today.toLocaleDateString('cs-CZ', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    document.getElementById('hiddenDate').value = formattedDate;
+                })
+                .catch(error => console.error('Error fetching or parsing XML:', error));
+            displayCurrentDate();
+        }
+
+        // Display today's date in the specified format
+        function displayCurrentDate() {
+            const dateDiv = document.getElementById('current-date');
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('cs-CZ', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            dateDiv.textContent = `Dnešní datum: ${formattedDate}`;
+        }
+
+        // Function to clear all form input fields
+        function clearForm() {
+            const inputs = document.querySelectorAll('.table-input');
+            inputs.forEach(input => input.value = '');
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('cs-CZ', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            document.getElementById('hiddenDate').value = formattedDate;
+            document.getElementById('userForm').submit();
+        }
+
+        // Toggle scheduled submission on and off
+        function toggleScheduledSubmission() {
+            if (scheduledSubmissionTimeout) {
+                clearTimeout(scheduledSubmissionTimeout);
+                clearInterval(countdownInterval);
+                scheduledSubmissionTimeout = null;
+                countdownInterval = null;
+                countdownSpan.textContent = "";
+                scheduleButton.textContent = "Odeslat zítra";
+                submitButton.classList.remove('hidden');
+                cancelButton.classList.remove('hidden');
+                setInputFieldsEditable(true);
+            } else {
+                // Schedule the submission for 5 AM next day
+                const now = new Date();
+                const tomorrow5am = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 5, 0, 0, 0);
+                const timeUntil5am = tomorrow5am - now;
+
+                scheduledSubmissionTimeout = setTimeout(() => {
+                    document.getElementById('userForm').submit();
+                    clearInterval(countdownInterval);
+                    countdownSpan.textContent = "";
+                    scheduleButton.textContent = "Odeslat zítra";
+                    setInputFieldsEditable(true);
+                }, timeUntil5am);
+
+                scheduleButton.textContent = "Zrušit naplánované odeslání";
+                setInputFieldsEditable(false);
+                startCountdown(timeUntil5am);
+                submitButton.classList.add('hidden');
+                cancelButton.classList.add('hidden');
+            }
+        }
+
+        // Set all input fields to editable or read-only and update CSS
+        function setInputFieldsEditable(editable) {
+            const inputs = document.querySelectorAll('.table-input');
+            inputs.forEach(input => {
+                input.readOnly = !editable;
+                input.classList.toggle('read-only', !editable);
+            });
+        }
+
+        // Start the countdown display
+        function startCountdown(duration) {
+            function updateCountdown() {
+                const hours = Math.floor(duration / 3600000);
+                const minutes = Math.floor((duration % 3600000) / 60000);
+                const seconds = Math.floor((duration % 60000) / 1000);
+                countdownSpan.textContent = `Nový rozvrh za: ${hours}h ${minutes}m ${seconds}s`;
+                duration -= 1000;
+                if (duration <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownSpan.textContent = "";
                 }
+            }
+            countdownInterval = setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
 
-                // Add the current date to a hidden field
-                const today = new Date();
-                const formattedDate = today.toLocaleDateString('cs-CZ', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                });
-                document.getElementById('hiddenDate').value = formattedDate;
-            })
-            .catch(error => console.error('Error fetching or parsing XML:', error));
-        displayCurrentDate();
-    }
-
-    // Function to display the current date
-    function displayCurrentDate() {
-        const dateDiv = document.getElementById('current-date');
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString('cs-CZ', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        dateDiv.textContent = `Dnešní datum: ${formattedDate}`;
-    }
-
-    // Function to clear all input fields and submit the form
-    function clearForm() {
-        const inputs = document.querySelectorAll('.table-input');
-        inputs.forEach(input => input.value = '');
-
-        // Set the hidden field with the current date again
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString('cs-CZ', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        document.getElementById('hiddenDate').value = formattedDate;
-
-        // Submit the form with empty fields
-        document.getElementById('userForm').submit();
-    }
-
-    // Load user data on page load
-    window.onload = loadUserData;
-</script>
-
+        // Initialize the page
+        window.onload = loadUserData;
+    </script>
 </body>
+
 </html>
