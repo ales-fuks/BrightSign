@@ -136,18 +136,13 @@
         <div style="margin-top: 20px;">
             <button type="submit" id="submitButton">Odeslat</button>
             <button type="button" id="cancelButton" onclick="clearForm()">Smazat!</button>
-            <button type="button" id="scheduleButton" onclick="toggleScheduledSubmission()">Odeslat zítra</button>
-            <span id="countdown" style="font-weight: bold; color: red; margin-left: 10px;"></span>
         </div>
     </form>
 
     <script>
         let scheduledSubmissionTimeout = null;
-        let countdownInterval = null;
         const submitButton = document.getElementById('submitButton');
         const cancelButton = document.getElementById('cancelButton');
-        const scheduleButton = document.getElementById('scheduleButton');
-        const countdownSpan = document.getElementById('countdown');
 
         // Load the current date and populate form fields on page load
         function loadUserData() {
@@ -158,14 +153,14 @@
                     const xmlDoc = parser.parseFromString(data, 'text/xml');
                     const vars = xmlDoc.getElementsByTagName('BrightSignVar');
 
-                    for (let i = 0; i < vars.length; i++) {
-                        const varName = vars[i].getAttribute('name');
-                        const varValue = vars[i].textContent;
-                        const input = document.querySelector(`input[name="${varName}"]`);
-                        if (input) {
-                            input.value = varValue;
-                        }
-                    }
+                    // for (let i = 0; i < vars.length; i++) {
+                    //     const varName = vars[i].getAttribute('name');
+                    //     const varValue = vars[i].textContent;
+                    //     const input = document.querySelector(`input[name="${varName}"]`);
+                    //     if (input) {
+                    //         input.value = varValue;
+                    //     }
+                    // }
                     const today = new Date();
                     const formattedDate = today.toLocaleDateString('cs-CZ', {
                         day: 'numeric',
@@ -202,66 +197,6 @@
             });
             document.getElementById('hiddenDate').value = formattedDate;
             document.getElementById('userForm').submit();
-        }
-
-        // Toggle scheduled submission on and off
-        function toggleScheduledSubmission() {
-            if (scheduledSubmissionTimeout) {
-                clearTimeout(scheduledSubmissionTimeout);
-                clearInterval(countdownInterval);
-                scheduledSubmissionTimeout = null;
-                countdownInterval = null;
-                countdownSpan.textContent = "";
-                scheduleButton.textContent = "Odeslat zítra";
-                submitButton.classList.remove('hidden');
-                cancelButton.classList.remove('hidden');
-                setInputFieldsEditable(true);
-            } else {
-                // Schedule the submission for 5 AM next day
-                const now = new Date();
-                const tomorrow5am = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 5, 0, 0, 0);
-                const timeUntil5am = tomorrow5am - now;
-
-                scheduledSubmissionTimeout = setTimeout(() => {
-                    document.getElementById('userForm').submit();
-                    clearInterval(countdownInterval);
-                    countdownSpan.textContent = "";
-                    scheduleButton.textContent = "Odeslat zítra";
-                    setInputFieldsEditable(true);
-                }, timeUntil5am);
-
-                scheduleButton.textContent = "Zrušit naplánované odeslání";
-                setInputFieldsEditable(false);
-                startCountdown(timeUntil5am);
-                submitButton.classList.add('hidden');
-                cancelButton.classList.add('hidden');
-            }
-        }
-
-        // Set all input fields to editable or read-only and update CSS
-        function setInputFieldsEditable(editable) {
-            const inputs = document.querySelectorAll('.table-input');
-            inputs.forEach(input => {
-                input.readOnly = !editable;
-                input.classList.toggle('read-only', !editable);
-            });
-        }
-
-        // Start the countdown display
-        function startCountdown(duration) {
-            function updateCountdown() {
-                const hours = Math.floor(duration / 3600000);
-                const minutes = Math.floor((duration % 3600000) / 60000);
-                const seconds = Math.floor((duration % 60000) / 1000);
-                countdownSpan.textContent = `Nový rozvrh za: ${hours}h ${minutes}m ${seconds}s`;
-                duration -= 1000;
-                if (duration <= 0) {
-                    clearInterval(countdownInterval);
-                    countdownSpan.textContent = "";
-                }
-            }
-            countdownInterval = setInterval(updateCountdown, 1000);
-            updateCountdown();
         }
 
         // Initialize the page
